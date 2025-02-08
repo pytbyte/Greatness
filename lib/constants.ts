@@ -1,1 +1,1 @@
-export const WEBSITE_URL = 'https://Greatness-revealed.vercel.app'
+export const WEBSITE_URL = 'https://greatness-beta.vercel.app'
