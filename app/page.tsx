@@ -189,7 +189,7 @@ export default function Personal() {
       </motion.section>
      
         <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <h3 className="mb-3 text-lg font-medium">What I Do</h3>
+        <h3 className="mb-3 text-lg font-medium">What I Build</h3>
         <div className="flex flex-col space-y-6">
           {BACKEND_PROJECTS.map((project) => (
             <div
