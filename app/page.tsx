@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -13,9 +14,9 @@ import {
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
-  PROJECTS,
+  BACKEND_PROJECTS,
+  FRONTEND_PROJECTS,
   WORK_EXPERIENCE,
-  BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
@@ -135,42 +136,22 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        
         <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+        
+          <p className="text-zinc-600 dark:text-zinc-400 mb-5">
+          I’m passionate about building futuristic, high-impact software solutions.
+          With a strong foundation in both frontend and backend development,
+          I specialize in transforming innovative ideas into seamless, scalable, 
+          and efficient multiplatform applications for the past 14 years.
+          
           </p>
+         
         </div>
       </motion.section>
 
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
-              </div>
-              <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.section>
+     
+        
 
       <motion.section
         variants={VARIANTS_SECTION}
@@ -179,11 +160,8 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
-            <a
+            <div
               className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
-              target="_blank"
-              rel="noopener noreferrer"
               key={job.id}
             >
               <Spotlight
@@ -205,46 +183,85 @@ export default function Personal() {
                   </p>
                 </div>
               </div>
-            </a>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+     
+        <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <h3 className="mb-3 text-lg font-medium">What I Do</h3>
+        <div className="flex flex-col space-y-6">
+          {BACKEND_PROJECTS.map((project) => (
+            <div
+              key={project.id}
+              className="group flex flex-col md:flex-row items-center md:items-stretch bg-zinc-100 dark:bg-zinc-900/80 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition"
+              data-id={project.id}
+            >
+              {/* Text Section */}
+              <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-500 transition">
+                  {project.name}
+                </h4>
+                <p className="mt-2 text-gray-600 dark:text-gray-300">
+                  {project.description}
+                </p>
+              </div>
+
+              {/* Image Section */}
+              <div className="w-full h-64 md:h-80 relative overflow-hidden rounded-lg shadow-lg">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  layout="intrinsic"
+                  width={400}
+                  height={400}
+                  objectFit="contain"
+                  className="transition-transform group-hover:scale-110 duration-300"
+                />
+              </div>
+
+            </div>
           ))}
         </div>
       </motion.section>
 
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
+      <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <h3 className="mb-3 text-lg font-medium">Technologies I use</h3>
+        <div className="flex flex-col space-y-6">
+          {FRONTEND_PROJECTS.map((project) => (
+            <div
+              key={project.id}
+              className="group flex flex-col md:flex-row items-center md:items-stretch bg-zinc-100 dark:bg-zinc-900/80 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition"
+              data-id={project.id}
+            >
+              {/* Text Section */}
+              <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-500 transition">
+                  {project.name}
+                </h4>
+                <p className="mt-2 text-gray-600 dark:text-gray-300">
+                  {project.description}
+                </p>
+              </div>
+
+              {/* Image Section */}
+              <div className="w-full h-64 md:h-80 relative overflow-hidden rounded-lg shadow-lg">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  layout="fill"
+                  objectFit="cover"
+                  className="transition-transform group-hover:scale-110 duration-300"
+                />
+              </div>
+
+            </div>
+          ))}
         </div>
       </motion.section>
+
+
+      
 
       <motion.section
         variants={VARIANTS_SECTION}
@@ -253,17 +270,11 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium">Connect</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
           Feel free to contact me at{' '}
-          <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
+          <a className="underline text-yellow-500 dark:text-yellow-400" href={`mailto:${EMAIL}`}>
             {EMAIL}
           </a>
         </p>
-        <div className="flex items-center justify-start space-x-3">
-          {SOCIAL_LINKS.map((link) => (
-            <MagneticSocialLink key={link.label} link={link.link}>
-              {link.label}
-            </MagneticSocialLink>
-          ))}
-        </div>
+       
       </motion.section>
     </motion.main>
   )

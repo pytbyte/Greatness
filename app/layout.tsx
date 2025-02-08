@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -12,9 +13,9 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Nim - Personal website template',
+  title: 'Greatness',
   description:
-    'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
+    'Personal website built with Next.js 15, React 19 and Motion-Primitives.',
 }
 
 const geist = Geist({
@@ -51,6 +52,7 @@ export default function RootLayout({
             </div>
           </div>
         </ThemeProvider>
+        <FloatingWhatsApp />
       </body>
     </html>
   )
